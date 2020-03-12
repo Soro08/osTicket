@@ -1,6 +1,4 @@
 <?php
-
-
 //
 // Calling conventions
 // $q - <CustomQueue> object for this navigation entry
@@ -23,13 +21,11 @@ $selected = (!isset($_REQUEST['a'])  && $_REQUEST['queue'] == $this_queue->getId
     </span>
 <?php } ?>
   </a>
-  
-</li>
-<!-- <div class="customQ-dropdown">
-    <ul class="scroll-height"> -->
+  <div class="customQ-dropdown">
+    <ul class="scroll-height">
       <!-- Add top-level queue (with count) -->
 
-      <!-- <?php
+      <?php
       if (!$children) { ?>
       <li class="top-level">
         <span class="pull-right newItemQ queue-count"
@@ -43,7 +39,7 @@ $selected = (!isset($_REQUEST['a'])  && $_REQUEST['queue'] == $this_queue->getId
         </a>
       </li>
       <?php
-      } ?> -->
+      } ?>
       <!-- Start Dropdown and child queues -->
       <?php foreach ($childs as $_) {
           list($q, $children) = $_;
@@ -61,8 +57,8 @@ $selected = (!isset($_REQUEST['a'])  && $_REQUEST['queue'] == $this_queue->getId
         }
         include 'queue-subnavigation.tmpl.php';
       } ?>
-    <!-- </ul>
-    Add Queue button sticky at the bottom
+    </ul>
+    <!-- Add Queue button sticky at the bottom -->
     <div class="add-queue">
       <a class="full-width" onclick="javascript:
         var pid = <?php echo $this_queue->getId() ?: 0; ?>;
@@ -71,5 +67,5 @@ $selected = (!isset($_REQUEST['a'])  && $_REQUEST['queue'] == $this_queue->getId
           <?php echo __('Add personal queue'); ?></span>
       </a>
     </div>
-  </div> -->
-
+  </div>
+</li>
