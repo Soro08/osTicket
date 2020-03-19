@@ -38,14 +38,14 @@
     mode  -> 1
     properties -> {"allowreopen":true,"reopenstatus":null,"35":""}
     
-    La couleure sera à sont tours gerer dans le code de la ligne 245—->273 dans le fichier staff/templates/queue-tickets.tmpl.php```
+    La couleure sera à sont tours gerer dans le code de la ligne 245—->273 dans le fichier staff/templates/queue-tickets.tmpl.php ```
     
     
 ## opt 3. Gestion de l’historique
 
   Ici il était question d'ajouter un collapse au liste et afficher le dernié:
   
-  ``bash
+  ```bash
   
   modification du fichier staff/templates/thread-entry.tmpl.php
 	
