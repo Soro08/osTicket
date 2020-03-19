@@ -1,7 +1,7 @@
 # osTicket
 # Project osTicket for evox
 
-opt 1. Barre de tâche
+## opt 1. Barre de tâche
 
   L'objectif ici était de ramener en une ligne les menu deroulant.
   Le fichier et code ajouté:
@@ -24,13 +24,12 @@ opt 1. Barre de tâche
         commenter la ligne 527 et la ligne. 541
 ```
 
-opt 2. Gestion des couleurs
+## opt 2. Gestion des couleurs
    L'objectif ici etait d'ajouter une couleur au statut du ticket.
    FIchier, code et bd
-   
    ```bash
     modification du fichier staff/templates/queue-tickets.tmpl.php  Ligne 245—->273
-
+    
     Base de donnée:
     table -> ost_ticket_status
     colones:
@@ -39,6 +38,24 @@ opt 2. Gestion des couleurs
     mode  -> 1
     properties -> {"allowreopen":true,"reopenstatus":null,"35":""}
     
-    La couleure sera à sont tours gerer dans le code de la ligne 245—->273 dans le fichier staff/templates/queue-tickets.tmpl.php ```
+    La couleure sera à sont tours gerer dans le code de la ligne 245—->273 dans le fichier staff/templates/queue-tickets.tmpl.php```
     
+    
+## opt 3. Gestion de l’historique
 
+  Ici il était question d'ajouter un collapse au liste et afficher le dernié:
+  
+  ``bash
+  
+  modification du fichier staff/templates/thread-entry.tmpl.php
+	
+  # Class sorocollapsible
+	# style="cursor: pointer;"
+
+  modification du fichier staff/tempaltes/thread-entries.tmpl.php	
+  staff/templates/thread-entries-preview.tmpl.php
+  # code js. — thread-entries.tmpl.php
+
+  
+
+```
