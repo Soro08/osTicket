@@ -524,7 +524,7 @@ var scp_prep = function() {
   // Auto fetch queue counts
   $(function() {
     var fired = false;
-    $('#customQ_nav li.item').hover(function() {
+    // $('#customQ_nav li.item').hover(function() {
       if (fired) return;
       fired = true;
       $.ajax({
@@ -538,7 +538,7 @@ var scp_prep = function() {
           });
         }
       });
-    });
+    // });
   });
 };
 

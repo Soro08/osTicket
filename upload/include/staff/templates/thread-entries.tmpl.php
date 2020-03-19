@@ -102,17 +102,26 @@ if ($this->getObjectType() == 'T')
 
     var coll = document.getElementsByClassName("sorocollapsible");
     var i;
-
+    console.log(coll.length)
+// CODE JS BY SORO NAN ----------- All right reserved
     for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-            content.style.display = "none";
-            } else {
-            content.style.display = "block";
-            }
-        });
+        if (i == coll.length-1){
+                console.log("yes", coll.length)
+                coll[i].classList.toggle("active");
+                var content = coll[i].nextElementSibling;
+                content.style.display = "block";
+        }else{
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+        
     }
 
     console.log('soro js')

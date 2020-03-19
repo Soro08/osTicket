@@ -14,9 +14,9 @@ $selected = (!isset($_REQUEST['a'])  && $_REQUEST['queue'] == $this_queue->getId
   <a href="<?php echo $this_queue->getHref(); ?>"
     class="Ticket"><?php echo $this_queue->getName(); ?>
 <?php if (!$cfg->showTopLevelTicketCounts()) { ?>
-    <span id="queue-count-bucket" class="hidden">
+    <span id="queue-count-bucket">
       (<span class="queue-count"
-        data-queue-id="<?php echo $this_queue->id; ?>"><span class="faded-more"></span>
+        data-queue-id="<?php echo $this_queue->id; ?>">
       </span>)
     </span>
 <?php } ?>
