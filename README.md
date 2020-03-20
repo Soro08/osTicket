@@ -38,7 +38,22 @@
     mode  -> 1
     properties -> {"allowreopen":true,"reopenstatus":null,"35":""}
     
-    La couleure sera à sont tours gerer dans le code de la ligne 245—->273 dans le fichier staff/templates/queue-tickets.tmpl.php ```
+    La couleure sera à sont tours gerer dans le code de la ligne 245—->273 dans le fichier staff/templates/queue-tickets.tmpl.php 
+    # Liste des couleurs
+    	- Noir
+	- Gris
+	- Marron
+	- Vert
+	- Orange
+	- Rose
+	- Rouge
+	- Bleu claire
+	- Bleu foncé
+	- Jaune
+	- Violet
+	- Supprimer la couleur
+    
+    ```
     
     
 ## opt 3. Gestion de l’historique
