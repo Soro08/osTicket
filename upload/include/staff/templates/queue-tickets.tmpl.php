@@ -44,7 +44,7 @@ if (isset($_GET['sort']) && is_numeric($_GET['sort'])) {
 }
 elseif (isset($_GET['sort'])
     // Drop the leading `qs-`
-    && (strpos($_GET['sort'], 'qs-') === 0)
+    && (strpos($_GET['sort'], 'qs-') === 0) 
     && ($sort_id = substr($_GET['sort'], 3))
     && is_numeric($sort_id)
     && ($sort = QueueSort::lookup($sort_id))
@@ -248,10 +248,10 @@ foreach ($tickets as $T) {
        <?php 
        //---------- CONNECTION DATABASE
        //
-       $servername = "localhost";
-       $username = "root";
-       $password = "root";
-       $dbname = "osticket";
+       $servername = DBHOST;
+       $username = DBUSER;
+       $password = DBPASS;
+       $dbname = DBNAME;
        try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
            // set the PDO error mode to exception
@@ -264,21 +264,30 @@ foreach ($tickets as $T) {
            }
            //---------- CONNECTION DATABASE CLOSE
         $ibtckid =$T['ticket_id'];
-        $stmt = $conn->prepare("SELECT * FROM ost_ticket WHERE ticket_id = ?");
+        
+        $stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_ticket_status WHERE ost_ticket.status_id = ost_ticket_status.id AND ticket_id = ?"); // Remplacer ost_ par votre prefix
         $stmt->execute([$ibtckid]);
         $soroticket = $stmt->fetch();
-
+        
+        /*
+        - Noir                  : #000000
+        - Gris                  : #808080
+        - Marron                : #800000
+        - Vert                  : #008000
+        - Orange                : #FF7F00
+        - Rose                  : #FD6C9E
+        - Rouge                 : #FF0000
+        - Bleu claire           : #0000FF
+        - Bleu foncé            : #000080
+        - Jaune                 : #FFFF00
+        - Violet                : #FF00FF
+        - Supprimer la couleur  : #FFFFFF
+        */
        
        
-       $statusIdnan = $soroticket['status_id'];
-       if ( $statusIdnan == 8){
-            $ibcolor = "#FF3933";
-       }elseif($statusIdnan == 9){
-            $ibcolor = "#FCFF33";
-       }else{
-            $ibcolor = "";
-       }
-       if($ibtckid){ ?>
+        $statusIdnan = $soroticket['status_id'];
+        $ibcolor = $soroticket['colorcode'];
+        if($ibtckid){ ?>
 
         
         <td style="background-color: <?= $ibcolor ?>;"><input type="checkbox" class="ckb" name="tids[]"
