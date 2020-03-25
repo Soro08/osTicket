@@ -32,11 +32,14 @@ Il était question de récupérer le projet depuis le github de osticket et ajou
 ## La Réalisation
 Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans votre lab. 
 * Tâche 1 
+
 	L'objectif ici était de ramener en une ligne les menu déroulant.
 	Les fichiers suivant ont été modifié.
+	
 	* /upload/include/staff/templates/queue-navigation.tmpl.php
 	* /upload/include/staff/templates/queue-savedsearches-nav.tmpl.php
 	* /upload/scp/js/scp.js
+	
 	Il vous suffit de changer ces fichier dans votre lab.
 	Ensuite vous devrez modifier la table `ost_queue `
 	mettre `le parent_id à 0 pour ( open, Answered, Overdue, My Tickets, et Closed)`
