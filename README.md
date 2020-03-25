@@ -54,4 +54,72 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 
 	voir image
 	
+* Tâche 2
+
+	L'objectif ici était d'ajouter une couleur au statut du ticket.
+	Fichier modifié: `/upload/include/staff/templates/queue-tickets.tmpl.php`
+
+	* changer le fichier correspondant dans votre lab.
+	
+	* Modifier la ligne 268 du fichier.
+	
+		$stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_ticket_status WHERE ost_ticket.status_id = ost_ticket_status.id AND ticket_id = ?");
+		
+		Dans la requête de la ligne 268 changer ost_ par votre prefix.
+		Ex: si votre préfixe est evox_ alors le résultat sera :
+		
+		$stmt = $conn->prepare("SELECT * FROM evox_ticket, evox_ticket_status WHERE evox_ticket.status_id = evox_ticket_status.id AND ticket_id = ?");
+		
+	* Ajouter les couleurs dans la base de donée.
+	
+		table -> `ost_ticket_status`
+		Ajouter la colonne `( colorcode  )` dans la table.
+		
+		image
+		
+		L’ajout des couleures se fait comme suite :
+		
+		name -> nom de la couleure ex: vert
+	    state -> open
+	    mode  -> 1
+	    flags -> 0
+	    sort -> position de la couleur ( précédente + 1 )
+	    colorcode -> code de la couleur ( voir la liste ci-dessous ) *
+	    created -> date aujourd'hui
+	    updated -> date aujourd'hui
+	    properties -> {"allowreopen":true,"reopenstatus":null,"35":""}
+		
+		La liste des code de couleur:
+		
+		- Noir                  : #000000
+		- Gris                  : #808080
+		- Marron                : #800000
+		- Vert                  : #008000
+		- Orange                : #FF7F00
+		- Rose                  : #FD6C9E
+		- Rouge                 : #FF0000
+		- Bleu claire           : #0000FF
+		- Bleu foncé            : #000080
+		- Jaune                 : #FFFF00
+		- Violet                : #FF00FF
+		- Supprimer la couleur  : #FFFFFF
+		
+	
+	* Tâche 3
+	
+	Ici il était question d'ajouter un collapse au liste de message et afficher le dernier.
+
+	Fichier modifié :
+	
+	staff/templates/thread-entry.tmpl.php
+	staff/tempaltes/thread-entries.tmpl.php
+	staff/templates/thread-entries-preview.tmpl.php
+	
+	Remplacer ces trois fichier dans votre lab.
+
+
+
+
+
+
 
