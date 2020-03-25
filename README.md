@@ -107,7 +107,7 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 		- Supprimer la couleur  : #FFFFFF
 		
 	
-	* Tâche 3
+* Tâche 3
 	
 	Ici il était question d'ajouter un collapse au liste de message et afficher le dernier.
 
