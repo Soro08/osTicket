@@ -44,7 +44,7 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 	Ensuite vous devrez modifier la table `ost_queue `
 	mettre `le parent_id à 0 pour ( open, Answered, Overdue, My Tickets, et Closed)`
 
-	voir image 
+	![alt text](https://github.com/Soro08/osTicket/blob/master/Colorresult.png?raw=true) 
 
 	Enfin vérifier le rendu.
 	voir image
