@@ -44,15 +44,15 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 	Ensuite vous devrez modifier la table `ost_queue `
 	mettre `le parent_id à 0 pour ( open, Answered, Overdue, My Tickets, et Closed)`
 
-	![alt text](https://github.com/Soro08/osTicket/blob/master/Colorresult.png?raw=true) 
+	![alt text](https://github.com/Soro08/osTicket/blob/master/dbstatus.png?raw=true) 
 
 	Enfin vérifier le rendu.
-	voir image
+	![alt text](https://github.com/Soro08/osTicket/blob/master/Colorresult.png?raw=true) 
 
 	EN cas de soucis veuillez activer les champs ici. http://127.0.0.1:8888/osTicket/upload/scp/settings.php?t=tickets#queues
 	http://127.0.0.1:8888/ -> represente le domaine
 
-	voir image
+	![alt text](https://github.com/Soro08/osTicket/blob/master/imgstatus.png?raw=true) 
 	
 * Tâche 2
 
@@ -75,7 +75,7 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 		table -> `ost_ticket_status`
 		Ajouter la colonne `( colorcode  )` dans la table.
 		
-		image
+		![alt text](https://github.com/Soro08/osTicket/blob/master/colorcolone.png?raw=true) 
 		
 		L’ajout des couleures se fait comme suite :
 		
@@ -88,6 +88,8 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 	    created -> date aujourd'hui
 	    updated -> date aujourd'hui
 	    properties -> {"allowreopen":true,"reopenstatus":null,"35":""}
+	    
+	    ![alt text](https://github.com/Soro08/osTicket/blob/master/imgcolor.png?raw=true) 
 		
 		La liste des code de couleur:
 		
