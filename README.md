@@ -34,21 +34,21 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 * Tâche 1 
 	L'objectif ici était de ramener en une ligne les menu déroulant.
 	Les fichiers suivant ont été modifié.
-		* /upload/include/staff/templates/queue-navigation.tmpl.php
-		* /upload/include/staff/templates/queue-savedsearches-nav.tmpl.php
- 		* /upload/scp/js/scp.js
+	* /upload/include/staff/templates/queue-navigation.tmpl.php
+	* /upload/include/staff/templates/queue-savedsearches-nav.tmpl.php
+	* /upload/scp/js/scp.js
 	Il vous suffit de changer ces fichier dans votre lab.
 	Ensuite vous devrez modifier la table `ost_queue `
 	mettre `le parent_id à 0 pour ( open, Answered, Overdue, My Tickets, et Closed)`
-	
+
 	voir image 
 
 	Enfin vérifier le rendu.
 	voir image
-	
+
 	EN cas de soucis veuillez activer les champs ici. http://127.0.0.1:8888/osTicket/upload/scp/settings.php?t=tickets#queues
 	http://127.0.0.1:8888/ -> represente le domaine
-	
+
 	voir image
 	
 
