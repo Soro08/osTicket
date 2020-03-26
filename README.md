@@ -61,7 +61,7 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 
 	* changer le fichier correspondant dans votre lab.
 	
-	* Modifier la ligne 268 du fichier.
+	* Modifier la ligne 270 du fichier.
 	
 		$stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_ticket_status WHERE ost_ticket.status_id = ost_ticket_status.id AND ticket_id = ?");
 		
