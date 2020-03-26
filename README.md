@@ -54,7 +54,7 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 
 	![alt text](https://github.com/Soro08/osTicket/blob/master/imgstatus.png?raw=true) 
 	
-* Tâche 2
+* Tâche 2 ( bug fix  )
 
 	L'objectif ici était d'ajouter une couleur au statut du ticket.
 	Fichier modifié: `/upload/include/staff/templates/queue-tickets.tmpl.php`
