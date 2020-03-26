@@ -242,11 +242,7 @@ foreach ($columns as $C) {
   </thead>
   <tbody>
 <?php
-foreach ($tickets as $T) {
-    echo '<tr>';
-    if ($canManageTickets) { ?>
-       <?php 
-       //---------- CONNECTION DATABASE
+//---------- CONNECTION DATABASE
        //
        $servername = DBHOST;
        $username = DBUSER;
@@ -256,12 +252,18 @@ foreach ($tickets as $T) {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
            // set the PDO error mode to exception
            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-           echo "Connected successfully";
+        //    echo "Connected successfully";
            }
        catch(PDOException $e)
            {
-           echo "Connection failed: " . $e->getMessage();
+            echo "Connection failed: " . $e->getMessage();
            }
+
+foreach ($tickets as $T) {
+    echo '<tr>';
+    if ($canManageTickets) { ?>
+       <?php 
+       
            //---------- CONNECTION DATABASE CLOSE
         $ibtckid =$T['ticket_id'];
         // ------  Remplacer ost_ par votre prefix
