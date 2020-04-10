@@ -15,6 +15,8 @@ Il était question de récupérer le projet depuis le github de osticket et ajou
    * /upload/scp/js/scp.js
 * Tâche 2
    * /upload/include/staff/templates/queue-tickets.tmpl.php
+   * /upload/include/staff/templates/tickets-actions.tmpl.php
+   * /upload/scp/aaapostcolors.php (nouveau fichier)
 * Tâche 3
    	* staff/templates/thread-entry.tmpl.php
    	* staff/tempaltes/thread-entries.tmpl.php
@@ -24,7 +26,8 @@ Il était question de récupérer le projet depuis le github de osticket et ajou
 * Tâche 1
   	* ost_queue
 * Tâche 2
-   	* ost_ticket_status
+	* ost_ticket
+	* ost_colors (new)
 * Tâche 3
    	* aucune table
 
@@ -54,43 +57,35 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 
 	![alt text](https://github.com/Soro08/osTicket/blob/master/imgstatus.png?raw=true) 
 	
-* Tâche 2 ( bug fix  )
+* Tâche 2 
 
 	L'objectif ici était d'ajouter une couleur au statut du ticket.
-	Fichier modifié: `/upload/include/staff/templates/queue-tickets.tmpl.php`
+	Fichier modifié: 
+	`/upload/include/staff/templates/queue-tickets.tmpl.php`
+	 `/upload/include/staff/templates/tickets-actions.tmpl.php`
+   	 `/upload/scp/aaapostcolors.php (nouveau fichier)`
 
-	* changer le fichier correspondant dans votre lab.
+	* changer les fichiers correspondant dans votre lab et créer le fichier aaapostcolors dans le dossier /upload/scp/ .
 	
-	* Modifier la ligne 270 du fichier.
+	* Modifier la ligne 270 du fichier /upload/include/staff/templates/queue-tickets.tmpl.php.
 	
-		$stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_ticket_status WHERE ost_ticket.status_id = ost_ticket_status.id AND ticket_id = ?");
+		$stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_colors WHERE ost_ticket.colors_id = ost_colors.id AND ticket_id = ?");
 		
 		Dans la requête de la ligne 268 changer ost_ par votre prefix.
 		Ex: si votre préfixe est evox_ alors le résultat sera :
 		
-		$stmt = $conn->prepare("SELECT * FROM evox_ticket, evox_ticket_status WHERE evox_ticket.status_id = evox_ticket_status.id AND ticket_id = ?");
+		$stmt = $conn->prepare("SELECT * FROM evox_ticket, evox_colors WHERE evox_ticket.colors_id = evox_colors.id AND ticket_id = ?");
 		
-	* Ajouter les couleurs dans la base de donée.
+	* Créer ensuite la nouvelle table (ost_colors : remplacer ost_ par votre prefix. Si votre prefix est evox_ alors on aura evox_colors) .
 	
-		table -> `ost_ticket_status`
-		Ajouter la colonne `( colorcode  )` dans la table.
-		
-		![alt text](https://github.com/Soro08/osTicket/blob/master/colorcolone.png?raw=true) 
-		
-		L’ajout des couleures se fait comme suite :
-		
-		name -> nom de la couleure ex: vert
-	    state -> open
-	    mode  -> 1
-	    flags -> 0
-	    sort -> position de la couleur ( précédente + 1 )
-	    colorcode -> code de la couleur ( voir la liste ci-dessous ) *
-	    created -> date aujourd'hui
-	    updated -> date aujourd'hui
-	    properties -> {"allowreopen":true,"reopenstatus":null,"35":""}
-	    
-	    ![alt text](https://github.com/Soro08/osTicket/blob/master/imgcolor.png?raw=true) 
-		
+	Avec les colones suivantes:
+	- id  : int primary key  -> la clé primaire
+	- color : varchar(200)   ->  le nom de la couleur (ex: Rouge)
+	- code : varchar(200)    -> le code de la couleur (ex: #FF0000)
+	
+	Remplir ensuite la able des couleur avec vos couleur
+	
+
 		La liste des code de couleur:
 		
 		- Noir                  : #000000
