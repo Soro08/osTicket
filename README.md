@@ -91,23 +91,23 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 		- /upload/include/staff/templates/tickets-actions.tmpl.php
 	
 	* Modifier la ligne 270 du fichier /upload/include/staff/templates/queue-tickets.tmpl.php.
-	
+		```
 		$stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_colors WHERE ost_ticket.colors_id = ost_colors.id AND ticket_id = ?");
 		
 		Dans la requête de la ligne 268 changer ost_ par votre prefix.
 		Ex: si votre préfixe est evox_ alors le résultat sera :
 		
-		$stmt = $conn->prepare("SELECT * FROM evox_ticket, evox_colors WHERE evox_ticket.colors_id = evox_colors.id AND ticket_id = ?");
+		$stmt = $conn->prepare("SELECT * FROM evox_ticket, evox_colors WHERE evox_ticket.colors_id = evox_colors.id AND ticket_id = ?");```
 
 	* Modifier la ligne 29 du fichier /upload/include/staff/templates/tickets-actions.tmpl.php
 
-		$stmt = $conn->prepare("SELECT * FROM ost_colors");
+		`$stmt = $conn->prepare("SELECT * FROM ost_colors");`
 
 		changer simplement ost_ par votre prefix
 	
 	* Modifier la ligne 36 du fichier /upload/scp/aaapostcolors.php
 
-		$sql = "UPDATE ost_ticket SET colors_id=? WHERE ticket_id=?";
+		`$sql = "UPDATE ost_ticket SET colors_id=? WHERE ticket_id=?";`
 
 		changer ost_ par votre prefix
 		
