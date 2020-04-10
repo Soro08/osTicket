@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <?php
 // Tickets mass actions based on logged in agent
 
@@ -5,7 +7,53 @@
 if ($agent->canManageTickets())
     echo TicketStatus::status_options();
 
+// -----------------------====================================================-----------------------------//
+// Change color by soro
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "osticket";
 
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // echo "Connected successfully";
+    $stmt = $conn->prepare("SELECT * FROM ost_colors");
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    
+}
+catch(PDOException $e)
+    {
+    // echo "Connection failed: " . $e->getMessage();
+    }
+
+if ($agent->hasPerm(Ticket::PERM_ASSIGN, false)) {?>
+
+    <span
+        class="action-button" data-placement="bottom"
+        data-dropdown="#action-dropdown-colors" data-toggle="tooltip" title=" <?php
+        echo __('Change color'); ?>">
+        <i class="icon-caret-down pull-right"></i>
+        <a class="tickets-action" id="tickets-colors"
+            aria-label="<?php echo __('Change color'); ?>"
+            href=""><i class="icon-adjust"></i></a>
+    </span>
+    <div id="action-dropdown-colors" class="action-dropdown anchor-right">
+        <ul>
+        <!-- Display colors -->
+            <?php foreach($stmt->fetchAll() as $k=>$v) { ?>
+                <li><a class="" onclick="dysplaycheck(<?php echo $v['id']; ?>);"> <?php echo $v['color']; ?></a> </li>
+                
+            <?php } ?>
+        </ul>
+    </div>
+    <?php
+    }
+
+// End colors by Soro //
+// -----------------------====================================================-----------------------------//
 // Mass Claim/Assignment
 if ($agent->hasPerm(Ticket::PERM_ASSIGN, false)) {?>
 <span
@@ -98,5 +146,41 @@ $(function() {
         }
         return false;
     });
+
+
 });
+// -----------------------======================= AJAX CODE BY SORO =============================-----------------------------//
+function dysplaycheck(colorsid){
+    console.log(colorsid)
+    var checkboxvalue = [];
+    // var checkboxvalue = document.querySelector('.ckb:checked').value;
+    $("input:checkbox:checked").each(function(){
+        checkboxvalue.push($(this).val());
+    });
+    if (checkboxvalue.length == 0){
+        toastr.error('Merci de choisir un ticket pour appliquer cette action.', 'Error!', {timeOut: 8000})
+    }else{
+        console.log(checkboxvalue)
+        $.post("aaapostcolors.php/",
+        {
+            ticketid: checkboxvalue,
+            colorsid: colorsid,
+        },
+        function(data, status){
+            if(data){
+                
+                // alert("Data: " + data + "\nStatus: " + status);
+                toastr.success("La couleur du ticket vient d'être mise à jour!", 'Succès',{timeOut: 8000})
+                location.reload();
+            }else{
+                console.log($data)
+            }
+            
+        });
+    }
+    
+
+    
+}
+// -----------------------====================================================-----------------------------//
 </script>

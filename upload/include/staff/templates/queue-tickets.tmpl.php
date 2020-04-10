@@ -267,7 +267,7 @@ foreach ($tickets as $T) {
            //---------- CONNECTION DATABASE CLOSE
         $ibtckid =$T['ticket_id'];
         // ------  Remplacer ost_ par votre prefix
-        $stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_ticket_status WHERE ost_ticket.status_id = ost_ticket_status.id AND ticket_id = ?"); // Remplacer ost_ par votre prefix
+        $stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_colors WHERE ost_ticket.colors_id = ost_colors.id AND ticket_id = ?"); // Remplacer ost_ par votre prefix
         $stmt->execute([$ibtckid]);
         $soroticket = $stmt->fetch();
         
@@ -287,8 +287,8 @@ foreach ($tickets as $T) {
         */
        
        
-        $statusIdnan = $soroticket['status_id'];
-        $ibcolor = $soroticket['colorcode'];
+        $statusIdnan = $soroticket['colors_id'];
+        $ibcolor = $soroticket['code'];
         if($ibtckid){ ?>
 
         
