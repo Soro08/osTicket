@@ -267,7 +267,8 @@ foreach ($tickets as $T) {
            //---------- CONNECTION DATABASE CLOSE
         $ibtckid =$T['ticket_id'];
         // ------  Remplacer ost_ par votre prefix
-        $stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_colors WHERE ost_ticket.colors_id = ost_colors.id AND ticket_id = ?"); // Remplacer ost_ par votre prefix
+        
+        // Remplacer ost_ par votre prefix
         $stmt->execute([$ibtckid]);
         $soroticket = $stmt->fetch();
         
