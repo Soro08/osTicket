@@ -71,7 +71,7 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 	
 	* Créer un nouveau fichier aaapostcolors.php dans le dossier /upload/scp/ 
 
-		Vous trouverez ici le contenu du fichier
+		Vous trouverez [ici](https://github.com/Soro08/osTicket/blob/master/upload/scp/aaapostcolors.php) le contenu du fichier 
 	
 	* Créer ensuite une nouvelle table (ost_colors : remplacer ost_ par votre prefix. Si votre prefix est evox_ alors on aura evox_colors) .
 	
