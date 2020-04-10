@@ -79,10 +79,13 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 		- id  : int primary key  -> la clé primaire
 		- color : varchar(200)   ->  le nom de la couleur (ex: Rouge)
 		- code : varchar(200)    -> le code de la couleur (ex: #FF0000)
-
+		
+		![table color](https://raw.githubusercontent.com/Soro08/osTicket/master/img/tablecolor.png) 
 	* Ajouter la colone `colors_id` à la table `ost_ticket` 
 
 		Caracteristique de la colone type : Int(11), Une clé etranger de ost_colors
+		
+		![table ticket colorid](https://raw.githubusercontent.com/Soro08/osTicket/master/img/ticketcolorid.png) 
 
 	* changer les fichiers suivant dans votre lab
 
@@ -131,6 +134,11 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 		- Jaune                 : #FFFF00
 		- Violet                : #FF00FF
 		- Supprimer la couleur  : #FFFFFF
+		
+	* Resultat
+	
+	![result color](https://raw.githubusercontent.com/Soro08/osTicket/master/img/colorresult.png) 
+	
 		
 	
 * Tâche 3
