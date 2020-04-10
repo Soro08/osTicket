@@ -1,6 +1,6 @@
 
 # La documentation du projet
-Il était question de récupérer le projet depuis le github de osticket et ajouter 3 fonctionnalité qui cité ci-dessous.
+Il était question de récupérer le projet depuis le github de osticket et ajouter 3 fonctionnalité cité ci-dessous.
 ## Fonctionnalité
 * Barre de tâche
 * Gestion de couleurs 
@@ -27,7 +27,7 @@ Il était question de récupérer le projet depuis le github de osticket et ajou
   	* ost_queue
 * Tâche 2
 	* ost_ticket
-	* ost_colors (new)
+	* ost_colors (nouvelle table)
 * Tâche 3
    	* aucune table
 
@@ -43,6 +43,8 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 	* /upload/include/staff/templates/queue-savedsearches-nav.tmpl.php
 	* /upload/scp/js/scp.js
 	
+	- Supprimer ou commentez le contenu du fichier /upload/include/staff/templates/queue-savedsearches-nav.tmpl.php
+
 	Il vous suffit de changer ces fichier dans votre lab.
 	Ensuite vous devrez modifier la table `ost_queue `
 	mettre `le parent_id à 0 pour ( open, Answered, Overdue, My Tickets, et Closed)`
@@ -61,11 +63,32 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 
 	L'objectif ici était d'ajouter une couleur au statut du ticket.
 	Fichier modifié: 
-	`/upload/include/staff/templates/queue-tickets.tmpl.php`
-	 `/upload/include/staff/templates/tickets-actions.tmpl.php`
-   	 `/upload/scp/aaapostcolors.php (nouveau fichier)`
+		- /upload/include/staff/templates/queue-tickets.tmpl.php
 
-	* changer les fichiers correspondant dans votre lab et créer le fichier aaapostcolors dans le dossier /upload/scp/ .
+		- /upload/include/staff/templates/tickets-actions.tmpl.php
+
+   		- /upload/scp/aaapostcolors.php (nouveau fichier)
+	
+	* Créer un nouveau fichier aaapostcolors.php dans le dossier /upload/scp/ 
+
+		Vous trouverez ici le contenu du fichier
+	
+	* Créer ensuite une nouvelle table (ost_colors : remplacer ost_ par votre prefix. Si votre prefix est evox_ alors on aura evox_colors) .
+	
+		Avec les colones suivantes:
+		- id  : int primary key  -> la clé primaire
+		- color : varchar(200)   ->  le nom de la couleur (ex: Rouge)
+		- code : varchar(200)    -> le code de la couleur (ex: #FF0000)
+
+	* Ajouter la colone `colors_id` à la table `ost_ticket` 
+
+		Caracteristique de la colone type : Int(11), Une clé etranger de ost_colors
+
+	* changer les fichiers suivant dans votre lab
+
+		- /upload/include/staff/templates/queue-tickets.tmpl.php
+
+		- /upload/include/staff/templates/tickets-actions.tmpl.php
 	
 	* Modifier la ligne 270 du fichier /upload/include/staff/templates/queue-tickets.tmpl.php.
 	
@@ -75,16 +98,24 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 		Ex: si votre préfixe est evox_ alors le résultat sera :
 		
 		$stmt = $conn->prepare("SELECT * FROM evox_ticket, evox_colors WHERE evox_ticket.colors_id = evox_colors.id AND ticket_id = ?");
+
+	* Modifier la ligne 29 du fichier /upload/include/staff/templates/tickets-actions.tmpl.php
+
+		$stmt = $conn->prepare("SELECT * FROM ost_colors");
+
+		changer simplement ost_ par votre prefix
+	
+	* Modifier la ligne 36 du fichier /upload/scp/aaapostcolors.php
+
+		$sql = "UPDATE ost_ticket SET colors_id=? WHERE ticket_id=?";
+
+		changer ost_ par votre prefix
 		
-	* Créer ensuite la nouvelle table (ost_colors : remplacer ost_ par votre prefix. Si votre prefix est evox_ alors on aura evox_colors) .
 	
-	Avec les colones suivantes:
-	- id  : int primary key  -> la clé primaire
-	- color : varchar(200)   ->  le nom de la couleur (ex: Rouge)
-	- code : varchar(200)    -> le code de la couleur (ex: #FF0000)
+	* Remplir ensuite la table des couleur ( ost_colors -> ne pas oublier le prefix ) avec vos couleur
 	
-	Remplir ensuite la able des couleur avec vos couleur
-	
+		- color  ->  le nom de la couleur (ex: Rouge)
+		- code   -> le code de la couleur (ex: #FF0000)
 
 		La liste des code de couleur:
 		

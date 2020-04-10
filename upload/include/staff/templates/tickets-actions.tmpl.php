@@ -9,16 +9,23 @@ if ($agent->canManageTickets())
 
 // -----------------------====================================================-----------------------------//
 // Change color by soro
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "osticket";
+// MODIFIER LE CODE AVEC VOS 
+// $servername = "localhost";
+// $username = "root";
+// $password = "root";
+// $dbname = "osticket";
+$servername = DBHOST;
+$username = DBUSER;
+$password = DBPASS;
+$dbname = DBNAME;
+
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // echo "Connected successfully";
+    // =======--------------- CODE A MODIFIER --------=========== //
     $stmt = $conn->prepare("SELECT * FROM ost_colors");
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);

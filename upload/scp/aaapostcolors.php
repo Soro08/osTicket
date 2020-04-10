@@ -1,10 +1,14 @@
 <?PHP
-
+require('../client.inc.php');
 // Change color by soro
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "osticket";
+// $servername = "localhost";
+// $username = "root";
+// $password = "root";
+// $dbname = "osticket";
+$servername = DBHOST;
+$username = DBUSER;
+$password = DBPASS;
+$dbname = DBNAME;
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -28,6 +32,7 @@ if (isset($_POST["ticketid"]) && !empty($_POST["ticketid"])) { //Checks if ticke
 
             // Code to be executed
             $idticket = intval($myticket);
+            //===== CODE A MODIFIER ================================
             $sql = "UPDATE ost_ticket SET colors_id=? WHERE ticket_id=?";
     
             // Prepare statement
