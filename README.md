@@ -156,6 +156,18 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 
 
 
+* Ajout de couleur dans la page detail du ticket
+
+	L'objectif içi était de donner la possibilité de modifier la cours du ticket dans la page detail du ticket.
+	
+	Fichier modifié :
+
+	- staff/ticket-view.inc.php	
+	
+	Modifier ce fichier dans votre lab et éffectuer la modification suivante:
+	ligne 363
+	$stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_colors WHERE ost_ticket.colors_id = ost_colors.id AND ticket_id = ?");
+remplacer ost_ par votre prefix
 
 
 
