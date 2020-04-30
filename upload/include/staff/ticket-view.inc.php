@@ -359,7 +359,9 @@ if($ticket->isOverdue())
                 // ---------- Récupérer la couleur du ticket-----------------////
                 $ibtckid = $ticket->getId();
                 // ------  Remplacer ost_ par votre prefix
+
                 $stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_colors WHERE ost_ticket.colors_id = ost_colors.id AND ticket_id = ?"); // Remplacer ost_ par votre prefix
+                // --=================++++++++++++================----
                 $stmt->execute([$ibtckid]);
                 $soroticket = $stmt->fetch();
             
