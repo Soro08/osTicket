@@ -1,4 +1,36 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <?php
+
+// -----------------------====================================================-----------------------------//
+// Change color by soro
+// MODIFIER LE CODE AVEC VOS 
+// $servername = "localhost";
+// $username = "root";
+// $password = "root";
+// $dbname = "osticket";
+$servername = DBHOST;
+$username = DBUSER;
+$password = DBPASS;
+$dbname = DBNAME;
+
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // echo "Connected successfully";
+    // =======--------------- CODE A MODIFIER --------=========== //
+    $stmt = $conn->prepare("SELECT * FROM ost_colors");
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    
+}
+catch(PDOException $e)
+    {
+    // echo "Connection failed: " . $e->getMessage();
+    }
+
 //Note that ticket obj is initiated in tickets.php.
 if(!defined('OSTSCPINC') || !$thisstaff || !is_object($ticket) || !$ticket->getId()) die('Invalid path');
 
@@ -104,6 +136,27 @@ if($ticket->isOverdue())
                  <?php } ?>
               </ul>
             </div>
+            <!-- CHANGE COLORS BY SORO -->
+            <span
+                class="action-button" data-placement="bottom"
+                data-dropdown="#action-dropdown-colors" data-toggle="tooltip" title=" <?php
+                echo __('Change color'); ?>">
+                <i class="icon-caret-down pull-right"></i>
+                <a class="tickets-action" id="tickets-colors"
+                    aria-label="<?php echo __('Change color'); ?>"
+                    href=""><i class="icon-adjust"></i></a>
+            </span>
+            <div id="action-dropdown-colors" class="action-dropdown anchor-right">
+                <ul>
+                <!-- Display colors -->
+                    <?php foreach($stmt->fetchAll() as $k=>$v) { ?>
+                        <li><a class="" onclick="dysplaycheck(<?php echo $v['id']; ?>);"> <?php echo $v['color']; ?></a> </li>
+                        
+                    <?php } ?>
+                </ul>
+            </div>
+
+            <!-- // END CHANGE COLORS BY SORO -->
             <?php
             // Transfer
             if ($role->hasPerm(Ticket::PERM_TRANSFER)) {?>
@@ -254,7 +307,7 @@ if($ticket->isOverdue())
                 } ?>
 
 
-<?php           if ($thisstaff->hasPerm(Email::PERM_BANLIST)
+                <?php   if ($thisstaff->hasPerm(Email::PERM_BANLIST)
                     && $role->hasPerm(Ticket::PERM_REPLY)) {
                      if(!$emailBanned) {?>
                         <li><a class="confirm-action" id="ticket-banemail"
@@ -301,9 +354,28 @@ if($ticket->isOverdue())
                 ?>
            </div>
         <div class="flush-left">
+            <?php   
+
+                // ---------- Récupérer la couleur du ticket-----------------////
+                $ibtckid = $ticket->getId();
+                // ------  Remplacer ost_ par votre prefix
+                $stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_colors WHERE ost_ticket.colors_id = ost_colors.id AND ticket_id = ?"); // Remplacer ost_ par votre prefix
+                $stmt->execute([$ibtckid]);
+                $soroticket = $stmt->fetch();
+            
+                $statusIdnan = $soroticket['colors_id'];
+                $ibcolor = $soroticket['code'];
+                
+            ?>
              <h2><a href="tickets.php?id=<?php echo $ticket->getId(); ?>"
              title="<?php echo __('Reload'); ?>"><i class="icon-refresh"></i>
-             <?php echo sprintf(__('Ticket #%s'), $ticket->getNumber()); ?></a>
+             <?php echo sprintf(__('Ticket #%s'), $ticket->getNumber()); ?>  </a>
+             <span class="dot"></span>
+             <span style="height: 25px;
+                        width: 25px;
+                        background-color: <?php echo $ibcolor; ?>;
+                        border-radius: 50%;
+                        display: inline-block;"></span>
             </h2>
         </div>
     </div>
@@ -338,6 +410,7 @@ if($ticket->isOverdue())
                           <td><?php echo ($S = $ticket->getStatus()) ? $S->display() : ''; ?></td>
                       <?php } ?>
                 </tr>
+                
                 <tr>
                     <th><?php echo __('Priority');?>:</th>
                       <?php
@@ -1425,4 +1498,43 @@ function saveDraft() {
     if (redactor.opts.draftId)
         $('#response').redactor('plugin.draft.saveDraft');
 }
+
+
+
+
+// -----------------------======================= AJAX CODE BY SORO =============================-----------------------------//
+function dysplaycheck(colorsid){
+    console.log(colorsid)
+    var checkboxvalue = [<?php echo $ticket->getId(); ?>];
+    console.log(checkboxvalue)
+    
+    if (checkboxvalue.length == 0){
+        toastr.error('Merci de choisir un ticket pour appliquer cette action.', 'Error!', {timeOut: 8000})
+    }else{
+        console.log(checkboxvalue)
+        $.post("aaapostcolors.php/",
+        {
+            ticketid: checkboxvalue,
+            colorsid: colorsid,
+        },
+        function(data, status){
+            if(data){
+                
+                // alert("Data: " + data + "\nStatus: " + status);
+                toastr.success("La couleur du ticket vient d'être mise à jour!", 'Succès',{timeOut: 8000})
+                location.reload();
+            }else{
+                console.log($data)
+            }
+            
+        });
+    }
+    
+
+    
+}
+// -----------------------====================================================-----------------------------//
 </script>
+
+
+

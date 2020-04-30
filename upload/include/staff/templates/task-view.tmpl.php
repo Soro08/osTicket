@@ -197,7 +197,7 @@ if ($task->isOverdue())
                 <?php
                 } ?>
                 </ul>
-            </div>
+            </div> 
             <?php
            } else { ?>
                 <span
@@ -235,6 +235,8 @@ if ($task->isOverdue())
                         } ?>
                     </ul>
                 </div>
+
+
                 <?php
                 // Assign
                 unset($actions['claim'], $actions['assign/agents'], $actions['assign/teams']);
