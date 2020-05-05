@@ -156,6 +156,29 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 
 
 
+
+
+
+
+
+
+
+
+=============================================.  MISE A JOURS   .===========================================================
+
+
+1. Correction bug menu 
+
+    dans la base de donnée, la table `ost_queue`, modifier la colone `config` pour les lignes:  `Answered` et `Overdue` 
+
+    - Ligne `Answerd` : `{"criteria":[["isanswered","set",null],["status__state","includes",{"open":"Open"}]],"conditions":[]}` 
+    - Ligne `Overdue` : `{"criteria":[["isoverdue","set",null],["status__state","includes",{"open":"Open"}]],"conditions":[]}
+
+
+
+3. Ajout de Coleur dans la page détail
+
+
 * Ajout de couleur dans la page detail du ticket
 
 	L'objectif içi était de donner la possibilité de modifier la cours du ticket dans la page detail du ticket.
@@ -168,6 +191,3 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 	ligne 363
 	$stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_colors WHERE ost_ticket.colors_id = ost_colors.id AND ticket_id = ?");
 remplacer ost_ par votre prefix
-
-
-
