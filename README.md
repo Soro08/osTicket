@@ -171,10 +171,10 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 
     dans la base de donnée, la table `ost_queue`, modifier la colone `config` pour les lignes:  `Answered` et `Overdue` 
     
-    - Ligne `Open`(Le 2 ème): `{"criteria":[["isanswered","nset",null],["status__state","includes",{"open":"Open"}]],"conditions":[]}` 
+    - Ligne `Open`(Le 2 ème): `{"criteria":[["isanswered","nset",null],["status__state","includes",{"open":"Open"}],["isoverdue","set",null]],"conditions":[]}` 
     
 
-    - Ligne `Answerd` : `{"criteria":[["isanswered","set",null],["status__state","includes",{"open":"Open"}],["isoverdue","nset",null]],"conditions":[]}` 
+    - Ligne `Answerd` : `{"criteria":[["isanswered","set",null],["status__state","includes",{"open":"Open"}],["isoverdue","set",null]],"conditions":[]}` 
     
     
     - Ligne `Overdue` : `{"criteria":[["isoverdue","set",null],["status__state","includes",{"open":"Open"}]],"conditions":[]}
