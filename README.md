@@ -196,3 +196,21 @@ Pour faire simple il vous suffit de remplacer les fichiers cité plus haut dans 
 	ligne 363
 	$stmt = $conn->prepare("SELECT * FROM ost_ticket, ost_colors WHERE ost_ticket.colors_id = ost_colors.id AND ticket_id = ?");
 remplacer ost_ par votre prefix
+
+
+
+
+
+
+
+
+
+
+============================================ MISE A JOUR DATE V-1 ========================================================
+
+
+Motifier la propriété de la colone `lastupdate` de la table `ost_ticket` :
+
+``` 
+ALTER TABLE ost_ticket CHANGE lastupdate lastupdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+```
