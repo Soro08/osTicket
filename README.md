@@ -206,7 +206,7 @@ remplacer ost_ par votre prefix
 
 
 
-============================================ MISE A JOUR DATE V-1 ========================================================
+============================= MISE A JOUR DATE V-1 =============================
 
 
 Motifier la propriété de la colone `lastupdate` de la table `ost_ticket` :
